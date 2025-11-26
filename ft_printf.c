@@ -43,6 +43,7 @@ int	ft_printf(const char *s, ...)
 // int main(int ac, char **av)
 // {
 // 	(void)ac;
-// 	printf("\nreturned: %d\n", ft_printf(av[1], '0'));
-// 	printf("\nreturned: %d", printf(av[1], '0'));
+// 	(void)av;
+// 	printf("\nreturned: %d\n", ft_printf(" %u ", (unsigned int)4294967296));
+// 	printf("\nreturned: %d", printf(" %u ", (unsigned int)4294967296));
 // }

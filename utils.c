@@ -33,9 +33,17 @@ void	ft_print_memory(void *ptr, char *base, int *count)
 	uintptr_t	addr;
 
 	addr = (uintptr_t)ptr;
-	ft_putstr_fd("0x", 1);
-	*count += 2;
-	ft_print_hex(addr, base, count);
+	if (ptr == 0)
+	{
+		*count += 5;
+		ft_putstr("(nil)", *count);
+	}
+	else
+	{
+		ft_putstr_fd("0x", 1);
+		*count += 2;
+		ft_print_hex(addr, base, count);
+	}
 }
 
 int	ft_putunsigned(unsigned int n, int count)
@@ -59,6 +67,12 @@ int	ft_putunsigned(unsigned int n, int count)
 
 int	ft_putstr(char *s, int count)
 {
+	if (!s)
+	{
+		write(1, "(null)", 6);
+		count += 6;
+		return (count);
+	}
 	count += ft_strlen(s);
 	while (*s)
 	{
@@ -68,13 +82,15 @@ int	ft_putstr(char *s, int count)
 	return (count);
 }
 
-static int	ft_get_len(int n, int count)
+static int	ft_get_len(long int n, int count)
 {
 	if (n < 0)
 	{
 		n = -n;
 		count++;
 	}
+	else if (n == 0)
+		return (count + 1);
 	while (n > 0)
 	{
 		n /= 10;
@@ -87,6 +103,7 @@ int	handle_format(char c, va_list args, int count)
 {
 	va_list	args_cpy;
 	va_copy(args_cpy, args);
+	
 	if (c == 'c')
 		return (ft_putchar_fd(va_arg(args, int), 1), count + 1);
 	else if (c == 's')
@@ -96,7 +113,7 @@ int	handle_format(char c, va_list args, int count)
 	else if (c == 'd' || c == 'i')
 		return (ft_putnbr_fd(va_arg(args, int), 1), ft_get_len(va_arg(args_cpy, int), count));
 	else if (c == 'u')
-		return (ft_putunsigned(va_arg(args, unsigned int), count));
+		return (ft_putunsigned(va_arg(args, unsigned int), count), ft_get_len(va_arg(args_cpy, unsigned int), count));
 	else if (c == 'x')
 		ft_itohex(va_arg(args, unsigned int), "0123456789abcdef", &count);
 	else if (c == 'X')
