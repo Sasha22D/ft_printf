@@ -16,27 +16,33 @@ int	ft_printf(const char *s, ...)
 {
 	va_list	args;
 	int		i;
+	int		count;
 
 	i = 0;
+	count = 0;
 	va_start(args, s);
-	while (str[i])
+	while (s[i])
 	{
-		if (str[i] == '%')
+		if (s[i] == '%')
 		{
-			handle_format(str[i + 1], args);
+			count += handle_format(s[i + 1], args, count);
 			i++;
 		}
 		else
-			ft_putchar_fd(str[i], 1);
+		{
+			ft_putchar_fd(s[i], 1);
+			count++;
+		}
 		i++;
 	}
 	va_end(args);
-	return (0);
+	return (count);
 }
 
 #include <stdio.h>
-int main(void)
+int main(int ac, char **av)
 {
-	printf("returned: %d\n", ft_printf("\%c", '0'));
-	printf("returned: %d\n", printf("\\%c", '0'));
+	(void)ac;
+	printf("\nreturned: %d\n", ft_printf(av[1], 'c', 2147483647));
+	printf("\nreturned: %d", printf(av[1], 'c', 2147483647));
 }
