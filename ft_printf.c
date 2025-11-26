@@ -25,7 +25,7 @@ int	ft_printf(const char *s, ...)
 	{
 		if (s[i] == '%')
 		{
-			count += handle_format(s[i + 1], args, count);
+			count = handle_format(s[i + 1], args, count);
 			i++;
 		}
 		else
@@ -39,10 +39,10 @@ int	ft_printf(const char *s, ...)
 	return (count);
 }
 
-#include <stdio.h>
-int main(int ac, char **av)
-{
-	(void)ac;
-	printf("\nreturned: %d\n", ft_printf(av[1], 42));
-	printf("\nreturned: %d", printf(av[1], 42));
-}
+// #include <stdio.h>
+// int main(int ac, char **av)
+// {
+// 	(void)ac;
+// 	printf("\nreturned: %d\n", ft_printf(av[1], '0'));
+// 	printf("\nreturned: %d", printf(av[1], '0'));
+// }

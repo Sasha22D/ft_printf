@@ -68,8 +68,25 @@ int	ft_putstr(char *s, int count)
 	return (count);
 }
 
+static int	ft_get_len(int n, int count)
+{
+	if (n < 0)
+	{
+		n = -n;
+		count++;
+	}
+	while (n > 0)
+	{
+		n /= 10;
+		count++;
+	}
+	return (count);
+}
+
 int	handle_format(char c, va_list args, int count)
 {
+	va_list	args_cpy;
+	va_copy(args_cpy, args);
 	if (c == 'c')
 		return (ft_putchar_fd(va_arg(args, int), 1), count + 1);
 	else if (c == 's')
@@ -77,7 +94,7 @@ int	handle_format(char c, va_list args, int count)
 	else if (c == 'p')
 		ft_print_memory(va_arg(args, void *), "0123456789abcdef", &count);
 	else if (c == 'd' || c == 'i')
-		ft_putnbr_fd(va_arg(args, int), 1);
+		return (ft_putnbr_fd(va_arg(args, int), 1), ft_get_len(va_arg(args_cpy, int), count));
 	else if (c == 'u')
 		return (ft_putunsigned(va_arg(args, unsigned int), count));
 	else if (c == 'x')
