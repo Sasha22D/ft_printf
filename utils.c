@@ -12,32 +12,30 @@
 #include "./libft/libft.h"
 #include "ft_printf.h"
 
-int	ft_itohex(unsigned int n, char *base, int count)
+void	ft_itohex(unsigned int n, char *base, int *count)
 {
 	if (n >= 16)
-		ft_itohex(n / 16, base, count + 1);
+		ft_itohex(n / 16, base, count);
 	write(1, &base[n % 16], 1);
-	count++;
-	return (count);
+	(*count)++;
 }
 
-int	ft_print_hex(uintptr_t n, char *base, int count)
+void	ft_print_hex(uintptr_t n, char *base, int *count)
 {
 	if (n >= 16)
-		ft_print_hex(n / 16, base, count + 1);
+		ft_print_hex(n / 16, base, count);
 	write(1, &base[n % 16], 1);
-	count++;
-	return (count);
+	(*count)++;
 }
 
-int	ft_print_memory(void *ptr, char *base, int count)
+void	ft_print_memory(void *ptr, char *base, int *count)
 {
 	uintptr_t	addr;
 
 	addr = (uintptr_t)ptr;
 	ft_putstr_fd("0x", 1);
-	count += 2;
-	return (ft_print_hex(addr, base, count));
+	*count += 2;
+	ft_print_hex(addr, base, count);
 }
 
 int	ft_putunsigned(unsigned int n, int count)
@@ -77,16 +75,16 @@ int	handle_format(char c, va_list args, int count)
 	else if (c == 's')
 		return (ft_putstr(va_arg(args, char *), count));
 	else if (c == 'p')
-		return (ft_print_memory(va_arg(args, void *), "0123456789abcdef", count));
+		ft_print_memory(va_arg(args, void *), "0123456789abcdef", &count);
 	else if (c == 'd' || c == 'i')
 		ft_putnbr_fd(va_arg(args, int), 1);
 	else if (c == 'u')
 		return (ft_putunsigned(va_arg(args, unsigned int), count));
 	else if (c == 'x')
-		return (ft_itohex(va_arg(args, unsigned int), "0123456789abcdef", count));
+		ft_itohex(va_arg(args, unsigned int), "0123456789abcdef", &count);
 	else if (c == 'X')
-		return (ft_itohex(va_arg(args, unsigned int), "0123456789ABCDEF", count));
+		ft_itohex(va_arg(args, unsigned int), "0123456789ABCDEF", &count);
 	else if (c == '%')
-		return (ft_putchar_fd(va_arg(args, int), 1), count + 1);
+		return (ft_putchar_fd('%', 1), count + 1);
 	return (count);
 }

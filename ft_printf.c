@@ -43,6 +43,6 @@ int	ft_printf(const char *s, ...)
 int main(int ac, char **av)
 {
 	(void)ac;
-	printf("\nreturned: %d\n", ft_printf(av[1], 'c'));
-	printf("\nreturned: %d", printf(av[1], 'c'));
+	printf("\nreturned: %d\n", ft_printf(av[1], 42));
+	printf("\nreturned: %d", printf(av[1], 42));
 }
