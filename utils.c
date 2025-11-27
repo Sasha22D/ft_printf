@@ -12,14 +12,6 @@
 #include "./libft/libft.h"
 #include "ft_printf.h"
 
-void	ft_itohex(unsigned int n, char *base, int *count)
-{
-	if (n >= 16)
-		ft_itohex(n / 16, base, count);
-	write(1, &base[n % 16], 1);
-	(*count)++;
-}
-
 void	ft_print_hex(uintptr_t n, char *base, int *count)
 {
 	if (n >= 16)
@@ -44,25 +36,6 @@ void	ft_print_memory(void *ptr, char *base, int *count)
 		*count += 2;
 		ft_print_hex(addr, base, count);
 	}
-}
-
-int	ft_putunsigned(unsigned int n, int count)
-{
-	unsigned char	c;
-
-	if (n >= 10)
-	{
-		ft_putunsigned(n / 10, count++);
-		c = '0' + n % 10;
-		write(1, &c, 1);
-	}
-	else
-	{
-		c = '0' + n;
-		write(1, &c, 1);
-		count++;
-	}
-	return (count);
 }
 
 int	ft_putstr(char *s, int count)
@@ -102,8 +75,8 @@ static int	ft_get_len(long int n, int count)
 int	handle_format(char c, va_list args, int count)
 {
 	va_list	args_cpy;
+
 	va_copy(args_cpy, args);
-	
 	if (c == 'c')
 		return (ft_putchar_fd(va_arg(args, int), 1), count + 1);
 	else if (c == 's')
@@ -111,13 +84,19 @@ int	handle_format(char c, va_list args, int count)
 	else if (c == 'p')
 		ft_print_memory(va_arg(args, void *), "0123456789abcdef", &count);
 	else if (c == 'd' || c == 'i')
-		return (ft_putnbr_fd(va_arg(args, int), 1), ft_get_len(va_arg(args_cpy, int), count));
+	{
+		ft_putnbr_fd(va_arg(args, int), 1);
+		return (ft_get_len(va_arg(args_cpy, int), count));
+	}
 	else if (c == 'u')
-		return (ft_putunsigned(va_arg(args, unsigned int), count), ft_get_len(va_arg(args_cpy, unsigned int), count));
+	{
+		ft_putunsigned(va_arg(args, unsigned int), count);
+		return (ft_get_len(va_arg(args_cpy, unsigned int), count));
+	}
 	else if (c == 'x')
-		ft_itohex(va_arg(args, unsigned int), "0123456789abcdef", &count);
+		ft_print_hex(va_arg(args, unsigned int), "0123456789abcdef", &count);
 	else if (c == 'X')
-		ft_itohex(va_arg(args, unsigned int), "0123456789ABCDEF", &count);
+		ft_print_hex(va_arg(args, unsigned int), "0123456789ABCDEF", &count);
 	else if (c == '%')
 		return (ft_putchar_fd('%', 1), count + 1);
 	return (count);

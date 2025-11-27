@@ -16,7 +16,6 @@
 # include <stdint.h>
 
 int		ft_putunsigned(unsigned int n, int count);
-void	ft_itohex(unsigned int n, char *base, int *count);
 void	ft_print_hex(uintptr_t n, char *base, int *count);
 void	ft_print_memory(void *ptr, char *base, int *count);
 int		ft_putstr(char *s, int count);

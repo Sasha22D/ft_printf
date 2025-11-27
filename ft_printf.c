@@ -39,11 +39,28 @@ int	ft_printf(const char *s, ...)
 	return (count);
 }
 
+int	ft_putunsigned(unsigned int n, int count)
+{
+	unsigned char	c;
+
+	if (n >= 10)
+	{
+		ft_putunsigned(n / 10, count++);
+		c = '0' + n % 10;
+		write(1, &c, 1);
+	}
+	else
+	{
+		c = '0' + n;
+		write(1, &c, 1);
+		count++;
+	}
+	return (count);
+}
+
 // #include <stdio.h>
-// int main(int ac, char **av)
+// int main()
 // {
-// 	(void)ac;
-// 	(void)av;
-// 	printf("\nreturned: %d\n", ft_printf(" %u ", (unsigned int)4294967296));
-// 	printf("\nreturned: %d", printf(" %u ", (unsigned int)4294967296));
+// 	ft_printf("\nreturned: %d\n", ft_printf(" %X ", 42));
+// 	printf("\nreturned: %d", printf(" %X ", 42));
 // }
