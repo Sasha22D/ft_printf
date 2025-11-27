@@ -15,11 +15,11 @@
 # include <stdarg.h>
 # include <stdint.h>
 
-int		ft_putunsigned(unsigned int n, int count);
+void	ft_putunsigned(unsigned int n);
 void	ft_print_hex(uintptr_t n, char *base, int *count);
 void	ft_print_memory(void *ptr, char *base, int *count);
 int		ft_putstr(char *s, int count);
 int		ft_printf(const char *s, ...);
-int		handle_format(char c, va_list args, int count);
+int		handle_format(char c, va_list args, va_list args_cpy, int count);
 
 #endif

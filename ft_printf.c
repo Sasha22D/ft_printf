@@ -15,17 +15,18 @@
 int	ft_printf(const char *s, ...)
 {
 	va_list	args;
+	va_list	args_cpy;
 	int		i;
 	int		count;
 
+	va_start(args, s);
 	i = 0;
 	count = 0;
-	va_start(args, s);
 	while (s[i])
 	{
 		if (s[i] == '%')
 		{
-			count = handle_format(s[i + 1], args, count);
+			count = handle_format(s[i + 1], args, args_cpy, count);
 			i++;
 		}
 		else
@@ -39,13 +40,13 @@ int	ft_printf(const char *s, ...)
 	return (count);
 }
 
-int	ft_putunsigned(unsigned int n, int count)
+void	ft_putunsigned(unsigned int n)
 {
 	unsigned char	c;
 
 	if (n >= 10)
 	{
-		ft_putunsigned(n / 10, count++);
+		ft_putunsigned(n / 10);
 		c = '0' + n % 10;
 		write(1, &c, 1);
 	}
@@ -53,9 +54,7 @@ int	ft_putunsigned(unsigned int n, int count)
 	{
 		c = '0' + n;
 		write(1, &c, 1);
-		count++;
 	}
-	return (count);
 }
 
 // #include <stdio.h>

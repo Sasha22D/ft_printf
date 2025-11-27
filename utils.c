@@ -72,10 +72,8 @@ static int	ft_get_len(long int n, int count)
 	return (count);
 }
 
-int	handle_format(char c, va_list args, int count)
+int	handle_format(char c, va_list args, va_list args_cpy, int count)
 {
-	va_list	args_cpy;
-
 	va_copy(args_cpy, args);
 	if (c == 'c')
 		return (ft_putchar_fd(va_arg(args, int), 1), count + 1);
@@ -90,7 +88,7 @@ int	handle_format(char c, va_list args, int count)
 	}
 	else if (c == 'u')
 	{
-		ft_putunsigned(va_arg(args, unsigned int), count);
+		ft_putunsigned(va_arg(args, unsigned int));
 		return (ft_get_len(va_arg(args_cpy, unsigned int), count));
 	}
 	else if (c == 'x')
