@@ -38,13 +38,13 @@ This produces a `libftprintf.a` static library in the root of the project. The `
 Link `libftprintf.a` and include the header in your source file:
 
 ```c
-#include "include/ft_printf.h"
+#include "includes/ft_printf.h"
 ```
 
 Then compile with:
 
 ```bash
-cc -Wall -Wextra -Werror main.c libftprintf.a -o my_program
+cc main.c libftprintf.a -o my_program
 ```
 
 ### Creating a test executable
@@ -52,7 +52,7 @@ cc -Wall -Wextra -Werror main.c libftprintf.a -o my_program
 Create a `main.c` at the root of the project:
 
 ```c
-#include "include/ft_printf.h"
+#include "includes/ft_printf.h"
 #include <stdio.h>
 
 int main(void)
@@ -92,8 +92,8 @@ make re       # full recompile
 ft_printf/
 ├── Makefile
 ├── README.md
-├── libft/            # libft submodule (compiled as dependency)
-├── include/
+├── libft/            # libft (compiled as dependency)
+├── includes/
 │   └── ft_printf.h
 └── srcs/
     ├── ft_printf.c   # main ft_printf function and ft_putunsigned
