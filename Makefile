@@ -6,39 +6,48 @@
 #    By: sadaniel <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/11/25 13:04:28 by sadaniel          #+#    #+#              #
-#    Updated: 2025/11/25 13:49:42 by sadaniel         ###   ########.fr        #
+#    Updated: 2026/04/14 18:53:00 by sadaniel         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-LIBFT_DIR = libft
-LIBFT = $(IBFT_DIR)/libft.a
+NAME		= libftprintf.a
 
-NAME = libftprintf.a
+SRC_DIR		= srcs
+INC_DIR		= include
+OBJ_DIR		= objs
+LIBFT_DIR	= libft
 
-CC = cc
-CFLAGS = -Wall -Wextra -Werror -I.
+CC			= cc
+CFLAGS		= -Wall -Wextra -Werror -I$(INC_DIR) -I$(LIBFT_DIR)
 
-SRC_FILES = ft_printf.c utils.c
+SRCS		=	ft_printf.c \
+				utils.c
 
-OBJ_FILES = $(SRC_FILES:%.c=%.o)
+OBJS		= $(addprefix $(OBJ_DIR)/, $(SRCS:.c=.o))
 
 all: $(NAME)
 
-$(NAME): $(OBJ_FILES)
-	make -C $(LIBFT_DIR)
-	cp $(LIBFT_DIR)/$(LIBFT) $(NAME)
-	ar rcs $(NAME) $(OBJ_FILES)
+$(NAME): $(OBJS)
+	@make -C $(LIBFT_DIR)
+	@cp $(LIBFT_DIR)/libft.a $(NAME)
+	@ar rcs $(NAME) $(OBJS)
+	@echo "$(NAME) created."
 
-%.o: %.c
-	$(CC) $(CFLAGS) -c $^ -o $@
+$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c | $(OBJ_DIR)
+	@$(CC) $(CFLAGS) -c $< -o $@
+
+$(OBJ_DIR):
+	@mkdir -p $(OBJ_DIR)
 
 clean:
-	rm -f $(OBJ_FILES)
-	make -C $(LIBFT_DIR) clean
+	@rm -rf $(OBJ_DIR)
+	@make -C $(LIBFT_DIR) clean
+	@echo "deleted obj files"
 
 fclean: clean
-	rm -f $(NAME)
-	make -C $(LIBFT_DIR) fclean
+	@rm -f $(NAME)
+	@make -C $(LIBFT_DIR) fclean
+	@echo "deleted $(NAME)"
 
 re: fclean all
 
