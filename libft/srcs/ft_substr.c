@@ -1,35 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncmp.c                                       :+:      :+:    :+:   */
+/*   ft_substr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sadaniel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/11 16:35:12 by sadaniel          #+#    #+#             */
-/*   Updated: 2025/11/19 13:21:22 by sadaniel         ###   ########.fr       */
+/*   Created: 2025/11/13 11:57:53 by sadaniel          #+#    #+#             */
+/*   Updated: 2025/11/20 14:53:35 by sadaniel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "libft.h"
 
-int	ft_strncmp(const char *s1, const char *s2, size_t n)
+char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
-	size_t	i;
+	char	*str;
+	char	*p;
+	size_t	s_len;
 
-	i = 0;
-	while ((s1[i] || s2[i]) && i < n)
+	s_len = ft_strlen(s);
+	if (start >= s_len)
 	{
-		if (s1[i] != s2[i])
-			return ((unsigned char)s1[i] - (unsigned char)s2[i]);
-		else
-			i++;
+		str = malloc(1);
+		if (!str)
+			return (NULL);
+		str[0] = '\0';
+		return (str);
 	}
-	return (0);
+	if (len > s_len - start)
+		len = s_len - start;
+	str = malloc((len + 1) * sizeof(char));
+	if (!str)
+		return (NULL);
+	p = str;
+	while (len--)
+		*p++ = s[start++];
+	*p = '\0';
+	return (str);
 }
-/*
-#include <stdio.h>
-int	main(int ac, char **av)
-{
-	(void)ac;
-	printf("%d\n", ft_strncmp((const char *)av[1], (const char *)av[2], 5));
-}
-*/

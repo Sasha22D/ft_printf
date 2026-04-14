@@ -1,43 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memcpy.c                                        :+:      :+:    :+:   */
+/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sadaniel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/10 10:39:54 by sadaniel          #+#    #+#             */
-/*   Updated: 2025/11/20 12:27:40 by sadaniel         ###   ########.fr       */
+/*   Created: 2025/11/10 15:14:48 by sadaniel          #+#    #+#             */
+/*   Updated: 2025/11/19 13:10:46 by sadaniel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "libft.h"
 
-void	*ft_memcpy(void *dest, const void *src, size_t n)
+size_t	ft_strlcpy(char *dst, const char *src, size_t siz)
 {
-	unsigned char	*p;
-	unsigned char	*o;
+	size_t	i;
+	size_t	src_len;
+	size_t	space_left;
 
-	o = (unsigned char *)dest;
-	p = (unsigned char *)src;
-	if (!dest && !src)
-		return (NULL);
-	while (n > 0)
+	space_left = siz - 1;
+	src_len = ft_strlen(src);
+	i = 0;
+	if (siz == 0)
+		return (src_len);
+	while (src[i] && i < space_left)
 	{
-		*o = *p;
-		p++;
-		o++;
-		n--;
+		dst[i] = src[i];
+		i++;
 	}
-	return (dest);
+	dst[i] = '\0';
+	return (src_len);
 }
-/*
-#include <stdio.h>
-int main()
-{
-	char	*str = "sasha daniel";
-	char	dest[20];
-
-	ft_memcpy(dest, str, 10);
-
-	printf("%s\n", dest);
-}
-*/

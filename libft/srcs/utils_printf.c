@@ -9,8 +9,7 @@
 /*   Updated: 2025/11/25 14:53:29 by sadaniel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "./libft/libft.h"
-#include "ft_printf.h"
+#include "libft.h"
 
 void	ft_print_hex(uintptr_t n, char *base, int *count)
 {

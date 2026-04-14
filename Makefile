@@ -10,20 +10,20 @@
 #                                                                              #
 # **************************************************************************** #
 
-NAME		= libftprintf.a
+NAME = libftprintf.a
 
-SRC_DIR		= srcs
-INC_DIR		= include
-OBJ_DIR		= objs
-LIBFT_DIR	= libft
+SRC_DIR = srcs
+INC_DIR = includes
+OBJ_DIR = objs
+LIBFT_DIR = libft
 
-CC			= cc
-CFLAGS		= -Wall -Wextra -Werror -I$(INC_DIR) -I$(LIBFT_DIR)
+CC = cc
+CFLAGS = -Wall -Wextra -Werror -I$(INC_DIR) -I$(LIBFT_DIR)/includes
 
-SRCS		=	ft_printf.c \
+SRCS =	ft_printf.c \
 				utils.c
 
-OBJS		= $(addprefix $(OBJ_DIR)/, $(SRCS:.c=.o))
+OBJS = $(addprefix $(OBJ_DIR)/, $(SRCS:.c=.o))
 
 all: $(NAME)
 

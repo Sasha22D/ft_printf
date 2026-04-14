@@ -23,28 +23,3 @@ void	ft_bzero(void *s, size_t n)
 		n--;
 	}
 }
-/*
-#include <stdio.h>
-#include <string.h>
-
-void	print_memory(unsigned char *mem, size_t n)
-{
-	for (size_t i =0; i<  n; i++)
-		printf("%02X ", mem[i]);
-	printf("\n");
-}
-
-int	main()
-{
-	char	str1[] = "123456789";
-	char	str2[] = "123456789";
-
-	ft_bzero(str1, 5);
-
-	print_memory((unsigned char *)str1, 10);
-
-	bzero(str2, 5);
-
-	print_memory((unsigned char *)str2, 10);
-}
-*/

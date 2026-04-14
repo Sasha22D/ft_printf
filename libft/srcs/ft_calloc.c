@@ -1,25 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ftprintf.h                                         :+:      :+:    :+:   */
+/*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sadaniel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/25 12:41:33 by sadaniel          #+#    #+#             */
-/*   Updated: 2025/11/25 12:42:09 by sadaniel         ###   ########.fr       */
+/*   Created: 2025/11/12 15:21:16 by sadaniel          #+#    #+#             */
+/*   Updated: 2025/11/19 11:50:20 by sadaniel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
+#include "libft.h"
 
-# include <stdarg.h>
-# include <stdint.h>
+void	*ft_calloc(size_t nmemb, size_t size)
+{
+	size_t		total_size;
+	void		*ptr;
 
-void	ft_putunsigned(unsigned int n);
-void	ft_print_hex(uintptr_t n, char *base, int *count);
-void	ft_print_memory(void *ptr, char *base, int *count);
-int		ft_putstr(char *s, int count);
-int		ft_printf(const char *s, ...);
-int		handle_format(char c, va_list args, va_list args_cpy, int count);
-
-#endif
+	if (size != 0 && nmemb > (size_t)-1 / size)
+		return (NULL);
+	total_size = nmemb * size;
+	ptr = malloc(total_size);
+	if (!ptr)
+		return (NULL);
+	ft_memset(ptr, 0, total_size);
+	return (ptr);
+}

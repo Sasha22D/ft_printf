@@ -12,9 +12,15 @@
 #ifndef LIBFT_H
 # define LIBFT_H
 
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 5
+# endif
+
 # include <stddef.h>
 # include <stdlib.h>
 # include <unistd.h>
+# include <stdarg.h>
+# include <stdint.h>
 
 int		ft_isalpha(int c);
 int		ft_isdigit(int c);
@@ -50,6 +56,20 @@ void	ft_putchar_fd(char c, int fd);
 void	ft_putstr_fd(char *s, int fd);
 void	ft_putendl_fd(char *s, int fd);
 void	ft_putnbr_fd(int n, int fd);
+//PRINTF
+void	ft_putunsigned(unsigned int n);
+void	ft_print_hex(uintptr_t n, char *base, int *count);
+void	ft_print_memory(void *ptr, char *base, int *count);
+int		ft_putstr(char *s, int count);
+int		ft_printf(const char *s, ...);
+int		handle_format(char c, va_list args, va_list args_cpy, int count);
+//GET_NEXT_LINE
+int		ft_is_newline(char *s);
+int		ft_strlen_gnl(char *s);
+char	*ft_strjoin_gnl(char *s1, char *s2);
+char	*ft_putline(char *str, char *stash);
+void	ft_clean_stash(char **stash);
+char	*get_next_line(int fd);
 
 typedef struct s_list
 {

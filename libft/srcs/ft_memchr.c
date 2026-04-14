@@ -25,16 +25,3 @@ void	*ft_memchr(const void *s, int c, size_t n)
 	}
 	return (0);
 }
-/*
-#include <stdio.h>
-int	main()
-{
-	char	str[] = "sasha daniel";
-
-	printf("%s\n", (char *)ft_memchr(str, 'a', 12));
-	printf("%s\n", (char *)ft_memchr(str, 'l', 12));
-	printf("%s\n", (char *)ft_memchr(str, 's', 12));
-	printf("%s\n", (char *)ft_memchr(str, 'a', 0));
-	printf("%s\n", (char *)ft_memchr(str, 'a', 15));
-}
-*/

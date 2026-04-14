@@ -101,25 +101,3 @@ char	**ft_split(char const *s, char c)
 	tab[index] = NULL;
 	return (tab);
 }
-/*
-#include <stdio.h>
-#include <stdlib.h>
-
-int main(void)
-{
-    char **tab;
-    int i = 0;
-
-    tab = ft_split("sasha paul pierre michel daniel mousel", ' ');
-
-    while (tab[i])
-    {
-        printf("%s\n", tab[i]);
-        free(tab[i]);
-        i++;
-    }
-    free(tab);
-
-    return 0;
-}
-*/

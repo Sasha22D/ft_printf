@@ -35,25 +35,3 @@ size_t	ft_strlcat(char *dst, const char *src, size_t siz)
 	dst[dst_len + i] = '\0';
 	return (dst_len + src_len);
 }
-/*
-#include <stdio.h>
-#include <string.h>
-
-int main(void)
-{
-    char dest[20] = "Hello, ";
-    char *src = "World!";
-    size_t n;
-
-    n = ft_strlcat(dest, src, sizeof(dest));
-    printf("Résultat : %s\n", dest);
-    printf("Valeur retournée : %zu\n", n);
-
-    char dest2[10] = "Hi, ";
-    n = ft_strlcat(dest2, src, sizeof(dest2));
-    printf("Résultat avec petit buffer : %s\n", dest2);
-    printf("Valeur retournée : %zu\n", n);
-
-    return 0;
-}
-*/

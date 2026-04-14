@@ -31,13 +31,3 @@ int	ft_memcmp(const void *s1, const void *s2, size_t n)
 	}
 	return (0);
 }
-/*
-#include <stdio.h>
-#include <string.h>
-int	main(int ac, char **av)
-{
-	(void)ac;
-	printf("%d\n", ft_memcmp((const void *)av[1], (const void *)av[2], 12));
-	printf("%d\n", memcmp((const void *)av[1], (const void *)av[2], 12));
-}
-*/

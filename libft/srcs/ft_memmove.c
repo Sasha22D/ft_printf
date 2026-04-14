@@ -37,23 +37,3 @@ void	*ft_memmove(void *dest, const void *src, size_t n)
 	}
 	return (dest);
 }
-/*
-#include <stdio.h>
-
-int main(void)
-{
-    char str[20] = "Hello World";
-
-    ft_memmove(str + 6, str, 5);
-    str[11] = '\0';
-    printf("Sans overlap  : %s\n", str);
-
-    char str2[20] = "Hello World";
-
-    ft_memmove(str2 + 2, str2, 10);
-    str2[12] = '\0';
-    printf("Avec overlap  : %s\n", str2);
-
-    return 0;
-}
-*/

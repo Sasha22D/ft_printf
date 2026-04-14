@@ -28,14 +28,3 @@ char	*ft_strdup(const char *s)
 	str[i] = '\0';
 	return (str);
 }
-/*
-#include <stdio.h>
-int	main()
-{
-	char	str[] = "sasha";
-	char	*dest;
-
-	dest = ft_strdup(str);
-	printf("%s\n", dest);
-}
-*/

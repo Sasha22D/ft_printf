@@ -24,12 +24,3 @@ char	*ft_strchr(const char *s, int c)
 		return ((char *)s);
 	return (0);
 }
-/*
-#include <stdio.h>
-int	main()
-{
-	char	str[] = "sasha daniel";
-
-	printf("%s\n", ft_strchr(str, 'd'));
-}
-*/

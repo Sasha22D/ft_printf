@@ -34,13 +34,3 @@ int	ft_atoi(const char *nptr)
 	}
 	return (sign * result);
 }
-/*
-#include <stdio.h>
-int	main()
-{
-	printf("%d\n", ft_atoi("113"));
-	printf("%d\n", ft_atoi("-113"));
-	printf("%d\n", ft_atoi("2147483647"));
-	printf("%d\n", ft_atoi("-2147483648"));
-}
-*/
